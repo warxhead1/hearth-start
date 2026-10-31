@@ -18,7 +18,7 @@
         <svg viewBox="0 0 48 48" width="48" height="48"><path d="M24 4c3 8 12 12 12 24a12 12 0 0 1-24 0c0-6 3-9 5-12 1 4 3 6 5 6-2-7 0-13 2-18z" fill="currentColor"/></svg>
       </div>
       <h1><span data-name-greeting>Hi.</span> Let's get you into hearth.</h1>
-      <p class="lede">Six steps, about ten minutes, no passwords. Hearth lives on Eric's computer, which is shy: it only talks to phones inside a private tunnel called Tailscale. This page walks you through the tunnel and in the front door.</p>
+      <p class="lede">Four steps, about five minutes, no passwords. Ever. Hearth lives on Eric's computer, which is shy: it only talks to phones inside his private network, called Tailscale. Once your phone is in, hearth already knows it's you.</p>
       <div class="status" data-status role="status" aria-live="polite">
         <span class="dot"></span><span data-status-text>Checking whether your phone can see hearth...</span>
       </div>
@@ -29,7 +29,7 @@
         <div class="num" aria-hidden="true">1</div>
         <div class="body">
           <h2>Get the Tailscale app</h2>
-          <p>It's free, it's from a company called Tailscale Inc., and it's the tunnel.</p>
+          <p>It's free, it's from a company called Tailscale Inc., and it's the private network.</p>
           <a class="btn" href="https://apps.apple.com/app/tailscale/id1470499037">Open the App Store</a>
           <p class="small">Tap <b>Get</b>, then come back to this page.</p>
         </div>
@@ -38,16 +38,24 @@
       <li class="step" data-step="2">
         <div class="num" aria-hidden="true">2</div>
         <div class="body">
-          <h2>Sign in to Tailscale</h2>
+          <h2>Accept the Tailscale invite</h2>
+          <div data-invite-link hidden>
+            <a class="btn" data-invite-href href="#">Accept the Tailscale invite</a>
+            <p class="small">It opens a Tailscale page in Safari. Choose <b>Sign in with Google</b>, pick <b data-email>your Gmail account</b>, and accept.</p>
+          </div>
+          <div data-invite-email>
+            <p>Open the email from Tailscale inviting you to join Eric's network and tap the button in it. Choose <b>Sign in with Google</b>, pick <b data-email>your Gmail account</b>, and accept.</p>
+          </div>
+          <p>Then, in the <b>Tailscale app</b>:</p>
           <ol class="sub">
-            <li>Open <b>Tailscale</b> and tap <b>Get Started</b> (or <b>Log in</b>).</li>
-            <li>Choose <b>Sign in with Google</b> and pick <b data-email>your Gmail account</b>.</li>
-            <li>When iPhone asks to <b>Add VPN Configurations</b>, tap <b>Allow</b> and confirm with Face ID or your passcode. That's the tunnel, not anything sneaky.</li>
-            <li>Make sure the big switch at the top of the Tailscale app is <b>on</b> (it says Connected).</li>
+            <li>Log in with Google using that <b>same</b> account. Already logged in to your own network? Tap your account at the top, then <b>Add account</b>, and log in again.</li>
+            <li>When it asks which network, pick <b data-tailnet>Eric's</b>, not your own.</li>
+            <li>If iPhone asks to <b>Add VPN Configurations</b>, tap <b>Allow</b>. That's the private network, nothing sneaky.</li>
+            <li>The big switch at the top should be <b>on</b> (it says Connected).</li>
           </ol>
           <details>
             <summary>Wait, what is this thing?</summary>
-            <p>Tailscale makes a private network that only your phone and the machines you're allowed into can see. Eric shared exactly one machine with you: hearth. Your other internet traffic does not go through it, and a shared machine can only answer your phone, never reach into it.</p>
+            <p>Tailscale is a private network between Eric's machines and now your phone. Only your hearth traffic uses it; the rest of your internet goes the normal way. Your own Tailscale network stays yours. The app switches between the two, one at a time.</p>
           </details>
         </div>
       </li>
@@ -55,39 +63,16 @@
       <li class="step" data-step="3">
         <div class="num" aria-hidden="true">3</div>
         <div class="body">
-          <h2>Accept the hearth share</h2>
-          <div data-share-link hidden>
-            <a class="btn" data-share-href href="#">Accept hearth</a>
-            <p class="small">It opens a Tailscale page in Safari. Sign in with Google again, with the <b>same</b> account as step 2, and tap <b>Accept</b>.</p>
-          </div>
-          <div data-share-email>
-            <p>Open the email from Tailscale that says Eric <b>shared a device with you</b>, and tap the button in it. Sign in with Google using the <b>same</b> account as step 2, then tap <b>Accept</b>.</p>
-          </div>
-          <p class="small">Got a second email about a machine called <b>studio</b>? You can ignore that one; you reach the studio from inside hearth.</p>
+          <h2>Open hearth</h2>
+          <a class="btn" data-hearth-href href="#" aria-disabled="true">Open hearth</a>
+          <p class="small" data-no-host hidden>Open this page from the link Eric texted you. It has hearth's address in it.</p>
+          <p>That's the whole login. Hearth sees which Tailscale account your phone is on and signs you in by itself. Nothing to type, nothing to remember.</p>
+          <p class="small">If Safari says it can't find the server, go back to Tailscale, check you're on Eric's network with the switch on, and try again. The dot at the top of this page turns green when your phone can see hearth.</p>
         </div>
       </li>
 
       <li class="step" data-step="4">
         <div class="num" aria-hidden="true">4</div>
-        <div class="body">
-          <h2>Open hearth</h2>
-          <a class="btn" data-hearth-href href="#" aria-disabled="true">Open hearth</a>
-          <p class="small" data-no-host hidden>Open this page from the link Eric texted you; it carries hearth's address.</p>
-          <p class="small">If Safari says it can't find the server, go back to Tailscale, check the switch is on, and try again. The dot at the top of this page turns green when your phone can see hearth.</p>
-        </div>
-      </li>
-
-      <li class="step" data-step="5">
-        <div class="num" aria-hidden="true">5</div>
-        <div class="body">
-          <h2>Make your passkey</h2>
-          <p>On hearth, tap <b>Make my passkey</b> and look at your phone. Face ID, done. From now on Face ID is your login; there is nothing to remember and nothing to type.</p>
-          <p class="small">If iPhone asks where to save it, pick <b>iCloud Keychain</b> (the default).</p>
-        </div>
-      </li>
-
-      <li class="step" data-step="6">
-        <div class="num" aria-hidden="true">6</div>
         <div class="body">
           <h2>Put hearth on your Home Screen</h2>
           <ol class="sub">
@@ -101,11 +86,11 @@
 
     <section class="done" data-done hidden>
       <h2>You're in.</h2>
-      <p>Hearth is on your Home Screen and Face ID is your key. Go poke at the ventures.</p>
+      <p>Hearth is on your Home Screen, and it knows you by your phone. Go poke at the ventures.</p>
     </section>
 
     <footer>
-      <p>Stuck? You don't have to explain: Eric's hearth notices which step you're on and nudges him. Texting him "step 4 is being weird" also works.</p>
+      <p>Stuck? You don't have to explain. Eric's hearth notices which step you're on and nudges him. Texting him "step 3 is being weird" also works.</p>
       <p class="fine">This page holds no data. Your name and hearth's address come from the link Eric sent you and never leave your phone.</p>
     </footer>
   </main>
